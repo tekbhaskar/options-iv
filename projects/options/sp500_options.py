@@ -11,7 +11,7 @@ def get_sp500_tickers():
     return tables[0]['Symbol'].tolist()
 
 @st.cache_data
-def get_stock_data(ticker):
+def get_sp500_stock_data(ticker):
     try:
         stock = yf.Ticker(ticker)
         info = stock.info
@@ -31,7 +31,7 @@ tickers = get_sp500_tickers()
 iv_results = []
 
 for ticker in tickers:
-    iv, price, volume = get_stock_data(ticker)
+    iv, price, volume = get_sp500_stock_data(ticker)
     if iv and price and volume:
         iv_results.append({
             "Ticker": ticker,
